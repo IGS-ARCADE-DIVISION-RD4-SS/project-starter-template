@@ -1,0 +1,17 @@
+name: Security Scan
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  checkmarx-analysis:
+    uses: IGS-ARCADE-DIVISION-RD4-SS/checkmarx-templates/.github/workflows/reusable-scan.yml@main
+    with:
+      # Default to API, please update this to 'Web' or 'Server' based on your project type
+      category: 'API' 
+      department: 'ACD_RD4'
+    secrets:
+      ORG_ACTION_RUN_PAT: ${{ secrets.ORG_ACTION_RUN_PAT }}
+      SSC_TOKEN: ${{ secrets.SSC_TOKEN }}
